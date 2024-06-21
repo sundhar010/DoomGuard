@@ -1,14 +1,12 @@
 package com.sundhar.doomguard
 
 import android.accessibilityservice.AccessibilityService
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import android.widget.Toast
-import androidx.core.view.KeyEventDispatcher.dispatchKeyEvent
 
 class DoomguardService : AccessibilityService() {
     private val toastHandler = Handler(Looper.getMainLooper())
@@ -21,24 +19,29 @@ class DoomguardService : AccessibilityService() {
     }
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event?.let {
-//            Log.d(TAG, "Received ${event.packageName} event: ${event.eventType}")
+            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val isSwitchOn = sharedPreferences.getBoolean("switchState", true)
+            if(!isSwitchOn) {
+                return
+            }
+            val rootNode = rootInActiveWindow ?: return;
             when(event.packageName) {
                 "com.google.android.youtube" -> {
-                    var YTShortsIdentifier = "com.google.android.youtube:id/reel_scrim_shorts_while_top";
-                    if(isElementWithResourceIdPresent(rootInActiveWindow, YTShortsIdentifier)) {
+                    val ytShortsIdentifier = "com.google.android.youtube:id/reel_scrim_shorts_while_top";
+                    if(isElementWithResourceIdPresent(rootNode, ytShortsIdentifier)) {
                         Log.d(TAG, "Is YT Shorts")
                         performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
                     } else {
-//                        Log.d(TAG, "Not YT Shorts")
+                        Log.d(TAG, "Not YT Shorts")
                     }
                 }
                 "com.instagram.android" -> {
-                    var InstaReelIdentifier = "com.instagram.android:id/reels_ufi_more_button_component"
-                    if(isElementWithResourceIdPresent(rootInActiveWindow, InstaReelIdentifier)) {
-                        Log.d(TAG, "Is Insta Reel")
+                    val igReelsIdentifier = "com.instagram.android:id/reels_ufi_more_button_component"
+                    if(isElementWithResourceIdPresent(rootNode, igReelsIdentifier)) {
+                        Log.d(TAG, "Is IG Reel")
                         performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
                     } else {
-//                        Log.d(TAG, "Not YT Shorts")
+                        Log.d(TAG, "Not IG reel")
                     }
                 }
 

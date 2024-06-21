@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944739747668",
+    "project_id": "doomguard010",
+    "storage_bucket": "doomguard010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944739747668:android:a8569f72b8e5d3dc496ac1",
+        "android_client_info": {
+          "package_name": "com.sundhar.doomguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGrsldLk2KZBafDyEtV6VS4rxYlKhTMvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

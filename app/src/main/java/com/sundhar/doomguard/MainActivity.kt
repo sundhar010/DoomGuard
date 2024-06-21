@@ -16,48 +16,49 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.accessibility.AccessibilityManager
+import android.widget.Toast
 import com.sundhar.doomguard.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
+    private var accessibilityEnabled = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (!checkAccessibilityPermission(this, DoomguardService::class.java)) {
-//            redirectToAccessibilitySettings(this)
+        accessibilityEnabled = isAccessibilityServiceEnabled()
+        if(!accessibilityEnabled) {
             startActivity(Intent(this, InstructionsActivity::class.java))
+            finish()
         }
 
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.startDoomguard.setOnClickListener {
-            view ->  Snackbar.make(view, "Starting DoomGuard", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show()
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Load and set the default switch button state
+        val isSwitchOn = sharedPreferences.getBoolean("switchState", true)
+        binding.switchButton.isChecked = isSwitchOn
+        binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
+            editor.putBoolean("switchState", isChecked)
+            val state = if (isChecked) "ON" else "OFF"
+            editor.apply()
+            Toast.makeText(this, "DoomGuard is $state", Toast.LENGTH_SHORT).show()
         }
-        binding.stopDoomguard.setOnClickListener { view ->
-            Snackbar.make(view, "Stopping DoomGuard", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
+    }
+    
+
+    private fun isAccessibilityServiceEnabled(): Boolean {
+        val am = getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        val enabledServices = Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
+        val packageName = packageName
+        return enabledServices != null && enabledServices.contains(packageName)
     }
 
-    fun checkAccessibilityPermission(context: Context, service: Class<out AccessibilityService>): Boolean {
-        val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-        val enabledServices = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        val colonSplitter = TextUtils.SimpleStringSplitter(':')
 
-        colonSplitter.setString(enabledServices)
-        while (colonSplitter.hasNext()) {
-            val componentName = colonSplitter.next()
-            if (componentName.equals(service.name, ignoreCase = true)) {
-                return true
-            }
-        }
-        return false
-    }
+
 }
