@@ -8,95 +8,136 @@
     tools:context=".MainActivity">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="20dp"
+        <ImageView
+            android:id="@+id/header_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="500dp"
+            android:src="@mipmap/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/header_image"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:src="@mipmap/ic_launcher_foreground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.MaterialComponents.Headline3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_image" />
 
-            <TextView
-                android:id="@+id/title"
-                style="@style/TextAppearance.MaterialComponents.Headline3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Welcome"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_image" />
+        <TextView
+            android:id="@+id/subhead"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="This is DoomGuard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
-            <TextView
-                android:id="@+id/subhead"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="This is DoomGuard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+        <TextView
+            android:id="@+id/body"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Break free from the endless scroll! Doomguard helps you regain control of your time on Youtube Shorts and Instagram Reels."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subhead" />
 
-            <TextView
-                android:id="@+id/body"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Break free from the endless scroll! Doomguard helps you regain control of your time on Youtube Shorts and Instagram Reels."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subhead" />
-            <Switch
-                android:id="@+id/switchButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/body"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="DoomGuard"
-                android:checked="true"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"/>
+        <Switch
+            android:id="@+id/switchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:checked="true"
+            android:text="DoomGuard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/body" />
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/LinearLayout02"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/body"-->
-<!--                >-->
-<!--                <Button-->
-<!--                    android:id="@+id/start_doomguard"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="4dp"-->
-<!--                    android:layout_weight="1" android:text="Start">-->
-<!--                </Button>-->
-<!--                <Button-->
-<!--                    android:id="@+id/stop_doomguard"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_margin="4dp"-->
-<!--                    android:text="Stop">-->
-<!--                </Button>-->
-<!--            </LinearLayout>-->
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:columnCount="2"
+            android:rowCount="2"
+            app:layout_constraintTop_toBottomOf="@id/switchButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip5min"
+                android:layout_width="157dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:text="Pause for 5 mins" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip10min"
+                android:layout_width="157dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:text="Pause for 10 mins" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip15mins"
+                android:layout_width="157dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:text="Pause for 15 mins" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip20mins"
+                android:layout_width="157dp"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:text="Pause for 20 mins" />
+
+        </GridLayout>
 
 
+
+
+    <!--            <LinearLayout-->
+        <!--                android:id="@+id/LinearLayout02"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_marginTop="4dp"-->
+        <!--                android:layout_alignParentBottom="true"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/body"-->
+        <!--                >-->
+        <!--                <Button-->
+        <!--                    android:id="@+id/start_doomguard"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_margin="4dp"-->
+        <!--                    android:layout_weight="1" android:text="Start">-->
+        <!--                </Button>-->
+        <!--                <Button-->
+        <!--                    android:id="@+id/stop_doomguard"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:layout_margin="4dp"-->
+        <!--                    android:text="Stop">-->
+        <!--                </Button>-->
+        <!--            </LinearLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
