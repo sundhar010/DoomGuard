@@ -113,6 +113,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
+
     }
     
 

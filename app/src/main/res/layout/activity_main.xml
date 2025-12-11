@@ -9,6 +9,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
@@ -38,11 +39,21 @@
             style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="This is DoomGuard"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <Button
+            android:id="@+id/crash_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#33AAAAAA"
+            app:layout_constraintBottom_toBottomOf="@id/subhead"
+            app:layout_constraintEnd_toEndOf="@id/subhead"
+            app:layout_constraintTop_toTopOf="@id/subhead" />
 
         <TextView
             android:id="@+id/body"
@@ -73,9 +84,9 @@
             android:layout_margin="16dp"
             android:columnCount="2"
             android:rowCount="2"
-            app:layout_constraintTop_toBottomOf="@id/switchButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/switchButton">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip5min"
@@ -108,9 +119,7 @@
         </GridLayout>
 
 
-
-
-    <!--            <LinearLayout-->
+        <!--            <LinearLayout-->
         <!--                android:id="@+id/LinearLayout02"-->
         <!--                android:layout_height="wrap_content"-->
         <!--                android:layout_width="match_parent"-->
