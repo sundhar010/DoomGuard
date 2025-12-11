@@ -36,7 +36,7 @@ class DoomguardService : AccessibilityService() {
                     }
                 }
                 "com.instagram.android" -> {
-                    val igReelsIdentifier = "com.instagram.android:id/reels_ufi_more_button_component"
+                    val igReelsIdentifier = "com.instagram.android:id/clips_ufi_more_button_component"
                     if(isElementWithResourceIdPresent(rootNode, igReelsIdentifier)) {
                         Log.d(TAG, "Is IG Reel")
                         performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
